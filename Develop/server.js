@@ -24,17 +24,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
 });
 
-// route to get latest workout
-// app.get("/api/workouts", async (req, res) => {
-//     try {
-//         const lastWorkout = await db.Workout.find({})
-//         res.send(lastWorkout);
-//     } catch (error) {
-//         res.json(error)
-//     }
-// });
-
-// route to get latest workout with total duration
+// WORKING route to get latest workout with TOTAL DURATION
 app.get("/api/workouts", async (req, res) => {
   try {
     const lastWorkout = await db.Workout.find({});
@@ -52,11 +42,21 @@ app.get("/api/workouts", async (req, res) => {
   }
 });
 
-// route all workouts in range (SHOULD BE RETURNING DATA FOR DASHBOARD BUT ROUTE NOT WORKING)
+// NOT WORKING route all workouts in range
 app.get("/api/workouts/range", async (req, res) => {
   try {
     const inRange = await db.Workout.find({});
     res.json(inRange);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+// NOT WORKING: route to create new workout
+app.post("/api/workouts", async (req, res) => {
+  try {
+    const newWorkout = await db.Workout.create(body);
+    res.json(newWorkout);
   } catch (error) {
     res.json(error);
   }
