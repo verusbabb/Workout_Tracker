@@ -23,6 +23,8 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
 });
 
 // WORKING route to get latest workout with TOTAL DURATION
