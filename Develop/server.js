@@ -43,7 +43,15 @@ app.get("/api/workouts", async (req, res) => {
   }
 });
 
-// NOT WORKING route all workouts in range
+//put route for adding exercise
+app.put("/api/workouts", async (req, res) => {
+  try {
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+// route all workouts in range
 app.get("/api/workouts/range", async (req, res) => {
   try {
     const inRange = await db.Workout.find({});
@@ -53,7 +61,7 @@ app.get("/api/workouts/range", async (req, res) => {
   }
 });
 
-// NOT WORKING: route to create new workout
+// route to create new workout
 app.post("/api/workouts", async (req, res) => {
   try {
     const newWorkout = await db.Workout.create(body);
@@ -64,16 +72,16 @@ app.post("/api/workouts", async (req, res) => {
 });
 
 //html routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'))
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-app.get('/exercise', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/exercise.html'))
+app.get("/exercise", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/exercise.html"));
 });
 
-app.get('/stats', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/stats.html'))
+app.get("/stats", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/stats.html"));
 });
 
 app.listen(PORT, () => {
