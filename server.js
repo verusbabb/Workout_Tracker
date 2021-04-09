@@ -30,13 +30,6 @@ app.get("/api/workouts", async (req, res) => {
   try {
     const lastWorkout = await db.Workout.find({});
 
-    lastWorkout.forEach((workout) => {
-      let total = 0;
-      workout.exercises.forEach((e) => {
-        total += e.duration;
-      });
-      workout.totalDuration = total;
-    });
     res.json(lastWorkout);
   } catch (error) {
     res.json(error);
@@ -44,8 +37,18 @@ app.get("/api/workouts", async (req, res) => {
 });
 
 //put route for adding exercise
-app.put("/api/workouts", async (req, res) => {
+app.put("/api/workouts/:id", async (req, res) => {
   try {
+    // console.log(req.body);
+    const exerciseUpdate = await db.Workout.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $inc: { totalDuration: req.body.duration },
+        $push: { exercises: req.body },
+      },
+      { new: true }
+    );
+    res.json(exerciseUpdate);
   } catch (error) {
     res.json(error);
   }
@@ -54,7 +57,15 @@ app.put("/api/workouts", async (req, res) => {
 // route all workouts in range
 app.get("/api/workouts/range", async (req, res) => {
   try {
-    const inRange = await db.Workout.find({});
+    const inRange = await db.Workout.find({}).sort({ day: 1 });
+
+    inRange.forEach((workout) => {
+      let total = 0;
+      workout.exercises.forEach((e) => {
+        total += e.duration;
+      });
+      workout.totalDuration = total;
+    });
     res.json(inRange);
   } catch (error) {
     res.json(error);
@@ -64,6 +75,7 @@ app.get("/api/workouts/range", async (req, res) => {
 // route to create new workout
 app.post("/api/workouts", async (req, res) => {
   try {
+    body = req.body;
     const newWorkout = await db.Workout.create(body);
     res.json(newWorkout);
   } catch (error) {
