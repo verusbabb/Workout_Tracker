@@ -1,4 +1,7 @@
 # Workout_Tracker
+
+https://verus-workout-tracker.herokuapp.com/?id=60730184b2670e00157db9e3
+
 This is a web-based app that helps a user create workout plans, track their progress, and view graphical summary data to help understand their progress.
 
 The development challenge was to create the backend for routing, storing, and retreiving user data.
@@ -36,3 +39,9 @@ This app was created with:
 ![](https://github.com/verusbabb/Workout_Tracker/blob/main/public/images/add_resistence.png)
 
 ![](https://github.com/verusbabb/Workout_Tracker/blob/main/public/images/dashboard.png)
+
+## CONNECT WITH ME
+- Email: steve.babb@outlook.com
+- GitHub: https://github.com/verusbabb
+
+
