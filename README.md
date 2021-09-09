@@ -4,7 +4,7 @@ https://verus-workout-tracker.herokuapp.com/?id=60730184b2670e00157db9e3
 
 This is a web-based app that helps a user create workout plans, track their progress, and view graphical summary data to help understand their progress.
 
-The development challenge was to create the backend for routing, storing, and retreiving user data.
+The biggest development challenge in this effort was to create the backend for routing, storing, and retreiving user data.
 
 ## User Story
 ```
